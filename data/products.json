@@ -1,0 +1,23 @@
+[
+  {
+    "id": "A101",
+    "name": "Kulaklık",
+    "category": "Elektronik",
+    "price": 899.99,
+    "stock": 50
+  },
+  {
+    "id": "B202",
+    "name": "Pantalon",
+    "category": "Giyim",
+    "price": 149.50,
+    "stock": 120
+  },
+  {
+    "id": "C303",
+    "name": "Kitap",
+    "category": "Kitap",
+    "price": 250.00,
+    "stock": 30
+  }
+]
