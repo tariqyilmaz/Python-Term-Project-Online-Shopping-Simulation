@@ -4,6 +4,11 @@ from typing import List, Dict
 # Veri dosyasının yolu
 PRODUCTS_PATH = 'data/products.json'
 
+PROMO_RULES = {
+    "SAVE10": {"type": "percentage", "value": 10}, # %10 indirim
+    "FLAT50": {"type": "fixed", "value": 50}      # 50 TL indirim
+}
+
 def display_products(products: List[Dict]):
     """Ürün listesini kullanici dostu bir formatta görüntüler."""
     if not products:

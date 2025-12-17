@@ -1,5 +1,5 @@
 from typing import List, Dict, Any
-from decimal import Decimal, getcontext
+from decimal import Decimal, getcontext, ROUND_HALF_UP 
 
 getcontext().prec = 28 #Decimalin hassasiyetini arttırdık
 
@@ -85,3 +85,58 @@ def update_quantity(cart: Dict[str, Any], product_id: str, quantity: int) -> Dic
     cart["items"][product_id]["quantity"] = quantity
     print(f"Ürün ID {product_id} için yeni miktar: {quantity}")
     return cart
+
+def calculate_totals(cart: dict, tax_rate: float) -> dict:
+    subtotal = Decimal("0.00")
+
+    #Ara Toplamı Hesapla (Ürün Fiyatı x Miktar)
+    for item in cart.get("items", {}).values():
+        price = Decimal(str(item["price"]))
+        quantity = Decimal(str(item["quantity"]))
+        subtotal += price * quantity
+
+    #İndirimleri Uygula (Eğer sepetin içinde bir indirim tutarı varsa)
+    discount_total = cart.get("applied_discount", Decimal("0.00"))
+    
+    #İndirimden sonraki tutar (Sıfırın altına düşmemeli)
+    amount_after_discount = max(Decimal("0.00"), subtotal - discount_total)#"max" en büyük değeri seçer
+
+    #Vergiyi Hesapla (İndirimli tutar üzerinden)
+    tax_decimal = Decimal(str(tax_rate))
+    tax_amount = (amount_after_discount * tax_decimal).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+
+    #Genel Toplam
+    total = amount_after_discount + tax_amount
+
+    # Sonuçları sepet sözlüğüne kaydet
+    cart["subtotal"] = subtotal
+    cart["discount_total"] = discount_total
+    cart["tax_amount"] = tax_amount
+    cart["total"] = total
+
+    return cart
+
+def apply_promo_code(cart: dict, code: str, promo_rules: dict) -> dict:
+    code = code.upper()#Kullanıcı kodu küçük harfte yazsa büyüğe çevir
+    if code not in promo_rules:
+        print(f"Hata: '{code}' geçersiz bir promosyon kodudur.")
+        return cart
+    
+    rule = promo_rules[code]
+    subtotal = cart.get("subtotal", Decimal("0.00"))
+    discount = Decimal("0.00")
+
+    #İndirim Tipine Göre Hesapla 
+    if rule["type"] == "percentage": # Yüzdelik indirim
+        percentage = Decimal(str(rule["value"])) / Decimal("100")
+        discount = subtotal * percentage
+    elif rule["type"] == "fixed": # Sabit tutar indirimi
+        discount = Decimal(str(rule["value"]))
+    
+    #Sepete İndirimi Kaydet
+    cart["applied_discount"] = discount.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+    cart["promo_code"] = code
+    
+    print(f"Basarili: '{code}' kodu uygulandi. İndirim: {cart['applied_discount']} TL")
+    #İndirimin ücrete yansıması için tekrar hesap ediyoruz(Tax oranı şimdilik 0.1 kalsın)
+    return calculate_totals(cart, 0.1)
