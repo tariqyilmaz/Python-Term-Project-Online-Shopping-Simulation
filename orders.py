@@ -9,9 +9,6 @@ def create_order(cart, customer, payment_method):
     
     order_id = str(uuid.uuid4())[:8].upper()
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    # cart["items"] içinde bazen Decimal objeleri kalabiliyor, 
-    # bunları güvenli bir şekilde string'e çevirmeliyiz.
     clean_items = {}
     for item_id, details in cart["items"].items():
         clean_items[item_id] = {
@@ -38,15 +35,12 @@ def update_inventory_after_order(products: list, order: dict) -> list:
     """
     Sipariş edilen ürünlerin miktarlarını katalogdaki stoktan düşer.
     """
-    # Gerekli fonksiyon: def update_inventory_after_order(products: list, order: dict) -> list: 
-    
+
     for item_id, details in order["items"].items():
         qty_purchased = details["quantity"]
         
-        # Katalogdaki ilgili ürünü bul
         for product in products:
             if product["id"] == item_id:
-                # Stoğu azalt
                 product["stock"] -= qty_purchased
                 break
                 
@@ -56,7 +50,6 @@ def generate_receipt(order: dict, directory: str) -> str:
     """
     Sipariş bilgilerini içeren bir metin dosyası (makbuz) oluşturur.
     """
-    # Gerekli fonksiyon: def generate_receipt (order: dict, directory: str) -> str: 
     
     file_name = f"receipt_{order['order_id']}.txt"
     file_path = os.path.join(directory, file_name)

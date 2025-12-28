@@ -1,23 +1,107 @@
 [
   {
-    "id": "A101",
-    "name": "Kulaklık",
+    "id": "E404",
+    "name": "Akıllı Saat",
     "category": "Elektronik",
-    "price": 899.99,
-    "stock": 37
+    "price": 2450.00,
+    "stock": 15
   },
   {
-    "id": "B202",
-    "name": "Pantalon",
+    "id": "F505",
+    "name": "Spor Ayakkabı",
     "category": "Giyim",
-    "price": 149.5,
-    "stock": 120
+    "price": 1850.00,
+    "stock": 45
   },
   {
-    "id": "C303",
-    "name": "Kitap",
-    "category": "Kitap",
-    "price": 250.0,
+    "id": "G606",
+    "name": "Sırt Çantası",
+    "category": "Aksesuar",
+    "price": 750.00,
+    "stock": 60
+  },
+  {
+    "id": "H707",
+    "name": "Kahve Makinesi",
+    "category": "Ev Aletleri",
+    "price": 3200.00,
+    "stock": 8
+  },
+  {
+    "id": "I808",
+    "name": "Defter (A4)",
+    "category": "Kırtasiye",
+    "price": 85.50,
+    "stock": 200
+  },
+  {
+    "id": "J909",
+    "name": "Güneş Gözlüğü",
+    "category": "Aksesuar",
+    "price": 1200.00,
+    "stock": 25
+  },
+  {
+    "id": "K010",
+    "name": "Bluetooth Mouse",
+    "category": "Elektronik",
+    "price": 450.00,
+    "stock": 85
+  },
+  {
+    "id": "L111",
+    "name": "Polar Ceket",
+    "category": "Giyim",
+    "price": 650.00,
     "stock": 30
+  },
+  {
+    "id": "M212",
+    "name": "Roman (Bilim Kurgu)",
+    "category": "Kitap",
+    "price": 180.00,
+    "stock": 55
+  },
+  {
+    "id": "N313",
+    "name": "Termos (500ml)",
+    "category": "Mutfak",
+    "price": 540.00,
+    "stock": 40
+  },
+  {
+    "id": "O414",
+    "name": "Yoga Matı",
+    "category": "Spor",
+    "price": 380.00,
+    "stock": 20
+  },
+  {
+    "id": "P515",
+    "name": "Masa Lambası",
+    "category": "Ev Dekorasyon",
+    "price": 420.00,
+    "stock": 18
+  },
+  {
+    "id": "Q616",
+    "name": "USB Bellek (64GB)",
+    "category": "Elektronik",
+    "price": 220.00,
+    "stock": 150
+  },
+  {
+    "id": "R717",
+    "name": "Tükenmez Kalem Seti",
+    "category": "Kırtasiye",
+    "price": 125.00,
+    "stock": 90
+  },
+  {
+    "id": "S818",
+    "name": "Kupa Bardak",
+    "category": "Mutfak",
+    "price": 95.00,
+    "stock": 70
   }
 ]

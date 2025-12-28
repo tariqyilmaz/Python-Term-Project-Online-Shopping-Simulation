@@ -1,5 +1,3 @@
-#catalog.py is responsible for management, uploading, saving
-
 from storage import load_json, write_json
 from typing import List, Dict
 
@@ -11,7 +9,7 @@ def load_products(path: str) -> List[Dict]:
 def save_products(path: str, products: List[Dict]) -> None:
     write_json(path, products)
 
-#Urunleri arar
+#Urunleri araıyor
 def search_products(products: List[Dict], keyword: str) -> List[Dict]:
     keyword = keyword.lower()
     return [
